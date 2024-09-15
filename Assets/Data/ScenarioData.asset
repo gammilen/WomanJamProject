@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a268bf47724940a7861cd7cf235c9ac9, type: 3}
   m_Name: ScenarioData
   m_EditorClassIdentifier: 
-  MenIdInOrder: 040000000500000006000000
+  MenIdInOrder: 04000000050000000600000007000000
   GoddessesIdInOrder: 010000000200000003000000
   OpenningDialogue: {fileID: 11400000, guid: b9346966f22d4bc4f980c0a84e1413fc, type: 2}
   CommentDialogues: []
