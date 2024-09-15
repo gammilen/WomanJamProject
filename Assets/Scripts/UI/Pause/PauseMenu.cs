@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using RyanNielson.InputBinder;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _panel;
+    [SerializeField] private InputBinder _input;
+    
     private bool _isPaused;
-    void Update()
+
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        _input.BindKey(KeyCode.P, InputEvent.Pressed, CheckPause);
+    }
+    void CheckPause()
+    {
+        if (_isPaused)
         {
-            if (_isPaused)
-            {
-                Resume();
-            } else
-            {
-                Pause();
-            }
+            Resume();
+        } else
+        {
+            Pause();
         }
     }
 
