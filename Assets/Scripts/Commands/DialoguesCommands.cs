@@ -67,6 +67,8 @@ public class DialoguesCommands : MonoBehaviour
             Debug.Log("Dialogue finished without command");
             return;
         }
+
+        _inDialogue = false;
         _cmd.Complete();
     }
         
