@@ -46,14 +46,9 @@ public class ManagerDialogueCommand : MonoBehaviour
 
     private string GetLine()
     {
-        if (_linesPool.Count == 0)
-        {
-            _linesPool = GameCore.Instance.ManagersLines.Lines.Select((x, y) => y).ToList();
-        }
 
-        var index = Random.Range(0, _linesPool.Count - 1);
+        var index = Random.Range(0, GameCore.Instance.ManagersLines.Lines.Count - 1);
         var line = GameCore.Instance.ManagersLines.Lines[_linesPool[index]];
-        _linesPool.RemoveAt(index);
         return line;
     }
 

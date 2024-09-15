@@ -83,7 +83,7 @@ public class ManPresentController : MonoBehaviour
 
         if (_isOutsideOfScreen)
         {
-            _manView.transform.position = _initPosition + new Vector3(0, 15, 1);
+            _manView.transform.position = _initPosition + new Vector3(15, 0, 1);
             _isOutsideOfScreen = false;
             Go.to(_manView.transform, 1, new GoTweenConfig().position(new Vector3(0,0,1)));
             await UniTask.Delay(TimeSpan.FromSeconds(1));
