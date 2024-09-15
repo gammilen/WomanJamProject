@@ -59,8 +59,8 @@ public class GameScenario
             await GoddessesComment.CompletionTask;
         }
 
-        BossCall.Start();
-        await BossCall.CompletionTask;
+        /*BossCall.Start();
+        await BossCall.CompletionTask;*/
         FinishDialogue.Start();
         await FinishDialogue.CompletionTask;
         Finish.Start();
