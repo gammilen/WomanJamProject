@@ -59,7 +59,7 @@ public class ManPresentController : MonoBehaviour
             _hellEffect2.Play();
             _soundPlayer.PlayMusic(_hellSound);
 
-            Go.to(_manView.transform, 3, new GoTweenConfig().position(new Vector3(0,-15,0), true));
+            Go.to(_manView.transform, 3, new GoTweenConfig().position(new Vector3(0,-15,1), true));
 
         }
         _isOutsideOfScreen = true;
@@ -72,8 +72,9 @@ public class ManPresentController : MonoBehaviour
 
     public async UniTaskVoid Present(MenData.ManData data)
     {
-        await UniTask.DelayFrame(1);
+        await UniTask.DelayFrame(5);
         _presentingMan = true;
+        //_manView.transform.position = new Vector3();  
         _manView.color = new Color(1,1,1,1);
         _manBio.SetActive(true);
         _manBioText.text = data.Bio;
@@ -82,9 +83,9 @@ public class ManPresentController : MonoBehaviour
 
         if (_isOutsideOfScreen)
         {
-            _manView.transform.position = _initPosition + new Vector3(0, 15, 0);
+            _manView.transform.position = _initPosition + new Vector3(0, 15, 1);
             _isOutsideOfScreen = false;
-            Go.to(_manView.transform, 1, new GoTweenConfig().position(Vector3.zero));
+            Go.to(_manView.transform, 1, new GoTweenConfig().position(new Vector3(0,0,1)));
             await UniTask.Delay(TimeSpan.FromSeconds(1));
         }
     }
