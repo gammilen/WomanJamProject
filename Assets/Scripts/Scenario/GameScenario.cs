@@ -42,13 +42,13 @@ public class GameScenario
                 await GoddessQuestion.CompletionTask;
                 ManAnswer.Start();
                 await ManAnswer.CompletionTask;
-                if (goddessIndex == 1 && manIndex != 0)
+                /*if (goddessIndex == 1 && manIndex != 0)
                 {
                     ManagerCall.Start();
                     await ManagerCall.CompletionTask;
                     ManagerDialogue.Start();
                     await ManagerDialogue.CompletionTask;
-                }
+                }*/
             }
             
             Decision.Start();

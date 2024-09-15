@@ -48,7 +48,7 @@ public class ManagerDialogueCommand : MonoBehaviour
     {
 
         var index = Random.Range(0, GameCore.Instance.ManagersLines.Lines.Count - 1);
-        var line = GameCore.Instance.ManagersLines.Lines[_linesPool[index]];
+        var line = GameCore.Instance.ManagersLines.Lines[index];
         return line;
     }
 

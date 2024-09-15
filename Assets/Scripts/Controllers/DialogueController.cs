@@ -29,12 +29,12 @@ public class DialogueController : MonoBehaviour
 
         public async UniTaskVoid SetDialogue(List<DialogueData.DialogueLine> dialogue)
         {
-            await UniTask.DelayFrame(1);
             if (_currentDialogue != null)
             {
                 Debug.LogError("Already has dialogue");
                 return;
             }
+            await UniTask.DelayFrame(1);
 
             _currentDialogue = dialogue;
             _currentLineIndex = 0;
