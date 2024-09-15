@@ -33,7 +33,7 @@ public class SentenceShowCommand : MonoBehaviour
             Debug.LogError("No current man");
             GameCore.Instance.Data.CurrentManId = GameCore.Instance.ScenarioData.MenIdInOrder[0];
         }
-        else
+        else if (indexOf + 1 < GameCore.Instance.ScenarioData.MenIdInOrder.Count)
         {
             GameCore.Instance.Data.CurrentManId = GameCore.Instance.ScenarioData.MenIdInOrder[indexOf + 1];
         }
