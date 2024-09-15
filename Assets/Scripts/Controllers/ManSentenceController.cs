@@ -47,8 +47,8 @@ public class ManSentenceController : MonoBehaviour
 
     private void SetButtonPressed(bool toHeaven)
     {
-        _hellNormal.SetActive(false);
-        _heavenNormal.SetActive(false);
+        _hellNormal.SetActive(toHeaven);
+        _heavenNormal.SetActive(!toHeaven);
         _hellPressed.SetActive(!toHeaven);
         _heavenPressed.SetActive(toHeaven);
     }

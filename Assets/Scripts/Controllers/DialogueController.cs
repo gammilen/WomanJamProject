@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using RyanNielson.InputBinder;
 using UnityEngine;
 using TMPro;
@@ -26,8 +27,9 @@ public class DialogueController : MonoBehaviour
             _binder.BindKey(KeyCode.Mouse0, InputEvent.Pressed, HandleClick);
         }
 
-        public void SetDialogue(List<DialogueData.DialogueLine> dialogue)
+        public async UniTaskVoid SetDialogue(List<DialogueData.DialogueLine> dialogue)
         {
+            await UniTask.DelayFrame(1);
             if (_currentDialogue != null)
             {
                 Debug.LogError("Already has dialogue");

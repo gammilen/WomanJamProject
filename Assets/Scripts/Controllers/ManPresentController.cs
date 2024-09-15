@@ -51,7 +51,7 @@ public class ManPresentController : MonoBehaviour
         {
             _heavenEffect.Play();
             _soundPlayer.PlayMusic(_heavenSound);
-            Go.to(_manView, 3, new GoTweenConfig().colorProp("color", new Color(1, 1, 1, 0), true));
+            Go.to(_manView, 3, new GoTweenConfig().colorProp("color", new Color(1, 1, 1, 0), false));
         }
         else
         {
@@ -72,11 +72,14 @@ public class ManPresentController : MonoBehaviour
 
     public async UniTaskVoid Present(MenData.ManData data)
     {
+        await UniTask.DelayFrame(1);
         _presentingMan = true;
-        _manView.color = Color.white;
+        _manView.color = new Color(1,1,1,1);
         _manBio.SetActive(true);
         _manBioText.text = data.Bio;
         _manView.sprite = data.View;
+        _manView.color = new Color(1,1,1,1);
+
         if (_isOutsideOfScreen)
         {
             _manView.transform.position = _initPosition + new Vector3(0, 15, 0);

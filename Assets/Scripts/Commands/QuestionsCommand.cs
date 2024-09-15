@@ -16,6 +16,7 @@ public class QuestionsCommand : MonoBehaviour
 
     private void SetQuestions()
     {
+        Debug.Log("questions");
         _cmd = GameCore.Instance.Scenario.GoddessQuestion;
         
         var goddessId = GameCore.Instance.ScenarioData.GoddessesIdInOrder[_currentGoddessIndex];

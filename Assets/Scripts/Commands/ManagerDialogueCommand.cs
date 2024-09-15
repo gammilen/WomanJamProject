@@ -41,7 +41,7 @@ public class ManagerDialogueCommand : MonoBehaviour
                 GameCore.Instance.ScenarioData.HellManagerId,
                 Text = GetLine()
             });
-        _dialogueController.SetDialogue(dialogue);
+        _dialogueController.SetDialogue(dialogue).Forget();
     }
 
     private string GetLine()

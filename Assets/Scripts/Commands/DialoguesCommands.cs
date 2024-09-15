@@ -28,8 +28,8 @@ public class DialoguesCommands : MonoBehaviour
     private void PlayGoddessesComment()
     {
         _cmd = GameCore.Instance.Scenario.GoddessesComment;
-
-        PlayDialogue(GameCore.Instance.ScenarioData.CommentDialogues[CommandHelper.GetIndexOfCurrentMan()]);
+        _cmd.Complete();
+        // PlayDialogue(GameCore.Instance.ScenarioData.CommentDialogues[CommandHelper.GetIndexOfCurrentMan()]);
     }
 
     private void PlayFinishDialogue()
@@ -56,7 +56,7 @@ public class DialoguesCommands : MonoBehaviour
         
         _screenViewer.SwitchView(_screenViewer.goddessesView);
 
-        _dialogueController.SetDialogue(dialogueData.Dialogue);
+        _dialogueController.SetDialogue(dialogueData.Dialogue).Forget();
     }
 
     private void CompleteCurrent()

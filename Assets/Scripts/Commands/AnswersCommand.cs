@@ -34,9 +34,8 @@ public class AnswersCommand : MonoBehaviour
             Text = GameCore.Instance.Answers.GetAnswer(
                 GameCore.Instance.Data.CurrentManId, GameCore.Instance.Data.LastQuestionId)
         });
-        _dialogueController.SetDialogue(dialogueData);
+        _dialogueController.SetDialogue(dialogueData).Forget();
 
-        _cmd.Complete();
     }
 
     private void FinishDialogue()

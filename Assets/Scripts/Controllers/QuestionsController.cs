@@ -19,6 +19,7 @@ public class QuestionsController : MonoBehaviour
 
     public async UniTaskVoid Question(int charId, List<QuestionData> questions)
     {
+        await UniTask.DelayFrame(1);
         _choosing = true;
         
         var index = GameCore.Instance.ScenarioData.GoddessesIdInOrder.IndexOf(
