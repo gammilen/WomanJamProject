@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class QuestionsCommand : MonoBehaviour
 {
@@ -37,8 +39,19 @@ public class QuestionsCommand : MonoBehaviour
 
     private void Complete()
     {
+        if (_cmd != null)
+        {
+            CompleteAsync().Forget();
+        }
+        
+    }
+
+    private async UniTaskVoid CompleteAsync()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         _cmd.Complete();
         _cmd = null;
+
     }
         
 }
