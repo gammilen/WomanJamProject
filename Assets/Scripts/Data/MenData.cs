@@ -9,6 +9,7 @@ public class MenData : ScriptableObject
     public class ManData
     {
         public int CharacterId;
+        [TextArea(4,10)]
         public string Bio;
         public Sprite View;
     }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DialogueBox : MonoBehaviour
 {
 
+    public Image Image;
     public SpriteRenderer Renderer;
     public TMP_Text Text;
     [SerializeField] private Image _icon;
@@ -20,11 +21,13 @@ public class DialogueBox : MonoBehaviour
         if (_icon != null) _icon.sprite = charData.DialogueIcon;
         _name.text = charData.Name;
         Text.enabled = true;
+        Text.text = string.Empty;
     }
 
     public void SetIndex(int index)
     {
-        Renderer.sprite = _sprites[index];
+        if (Renderer) Renderer.sprite = _sprites[index];
+        if (Image) Image.sprite = _sprites[index];
         
     }
 

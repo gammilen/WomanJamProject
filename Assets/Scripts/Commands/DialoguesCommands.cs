@@ -28,8 +28,13 @@ public class DialoguesCommands : MonoBehaviour
     private void PlayGoddessesComment()
     {
         _cmd = GameCore.Instance.Scenario.GoddessesComment;
-        _cmd.Complete();
-        // PlayDialogue(GameCore.Instance.ScenarioData.CommentDialogues[CommandHelper.GetIndexOfCurrentMan()]);
+        var indexOf = CommandHelper.GetIndexOfCurrentMan();
+
+        PlayDialogue(GameCore.Instance.ScenarioData.CommentDialogues[indexOf]);
+        if (indexOf + 1 < GameCore.Instance.ScenarioData.MenIdInOrder.Count)
+        {
+            GameCore.Instance.Data.SetCurrentManId(GameCore.Instance.ScenarioData.MenIdInOrder[indexOf + 1]);
+        }
     }
 
     private void PlayFinishDialogue()

@@ -6,9 +6,12 @@ public class ManagerDialogueCommand : MonoBehaviour
 {
     [SerializeField] private ScreenViewer _screenViewer;
     [SerializeField] private DialogueController _dialogueController;
+    [SerializeField] private PhoneController _phone;
     
+    private static System.Random rng = new System.Random();  
+
     private GameCommand _cmd;
-    private List<int> _linesPool;
+    private List<int> _linesPool = new List<int>();
     private bool _inDialogue;
 
     private void Start()
@@ -26,12 +29,13 @@ public class ManagerDialogueCommand : MonoBehaviour
             return;
         }
 
-        _inDialogue = true;
         if (GameCore.Instance.Data.Decisions[^1].IsRight)
         {
             _cmd.Complete();
             return;
         }
+        _inDialogue = true;
+
         
         _screenViewer.SwitchView(_screenViewer.goddessesView);
         var dialogue = new List<DialogueData.DialogueLine>();
@@ -46,9 +50,13 @@ public class ManagerDialogueCommand : MonoBehaviour
 
     private string GetLine()
     {
-
-        var index = Random.Range(0, GameCore.Instance.ManagersLines.Lines.Count - 1);
-        var line = GameCore.Instance.ManagersLines.Lines[index];
+        if (_linesPool.Count == 0)
+        {
+            _linesPool = GameCore.Instance.ManagersLines.Lines.Select((x, y) => y).ToList();
+            Shuffle(_linesPool);
+        }
+        var line = GameCore.Instance.ManagersLines.Lines[_linesPool[0]];
+        _linesPool.RemoveAt(0);
         return line;
     }
 
@@ -58,7 +66,20 @@ public class ManagerDialogueCommand : MonoBehaviour
         {
             return;
         }
+
+        _phone.PutDown();
+        _inDialogue = false;
         _cmd.Complete();
     }
 
+
+    public static void Shuffle<T>(IList<T> list)  
+    {  
+        int n = list.Count;  
+        while (n > 1) {  
+            n--;  
+            int k = rng.Next(n + 1);  
+            (list[k], list[n]) = (list[n], list[k]);
+        }  
+    }
 }

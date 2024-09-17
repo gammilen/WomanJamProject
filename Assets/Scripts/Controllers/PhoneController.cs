@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using RyanNielson.InputBinder;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class PhoneController : MonoBehaviour
     [SerializeField] private SoundPlayer _soundPlayer;
     [SerializeField] private AudioClip _ringSound;
     [SerializeField] private AudioClip _pickSound;
+
+    [SerializeField] private PhoneRinging _phoneRinging;
 
     [SerializeField] private InputBinder _binder;
 
@@ -24,7 +27,7 @@ public class PhoneController : MonoBehaviour
     {
         _isRinging = true;
         _soundPlayer.PlayFX(_ringSound, true);
-        
+        _phoneRinging.Shake();
     }
 
     public void SetPhoneNormal(bool normal)
@@ -37,13 +40,26 @@ public class PhoneController : MonoBehaviour
     {
         if (_isRinging)
         {
-            _isRinging = false;
-            _soundPlayer.StopFX();
-            _soundPlayer.PlayFX(_pickSound, false);
-            SetPhoneNormal(false);
-            MoveNextEvent?.Invoke();
+            PickUp().Forget();
 
         }
+    }
+
+    private async UniTaskVoid PickUp()
+    {
+        _isRinging = false;
+        _soundPlayer.StopFX();
+        _soundPlayer.PlayFX(_pickSound, false);
+        _phoneRinging.StopShake();
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+        SetPhoneNormal(false);
+        MoveNextEvent?.Invoke();
+    }
+
+    public void PutDown()
+    {
+        SetPhoneNormal(true);
+        _soundPlayer.PlayFX(_pickSound, false);
     }
     
     

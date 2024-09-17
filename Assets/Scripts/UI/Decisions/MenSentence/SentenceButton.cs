@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SentenceButton : MonoBehaviour, IPointerClickHandler
+public class SentenceButton : MonoBehaviour
 {
     [SerializeField] private bool _toHeaven;
     [SerializeField] private ManSentenceController _sentenceController;
     
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnMouseDown()
     {
-        _sentenceController.MakeDecision(_toHeaven);
+        _sentenceController.MakeDecision(_toHeaven).Forget();
         
     }
 }

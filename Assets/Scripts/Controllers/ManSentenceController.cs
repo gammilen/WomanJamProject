@@ -1,9 +1,13 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using RyanNielson.InputBinder;
 using UnityEngine;
 
 public class ManSentenceController : MonoBehaviour
 {
+    [SerializeField] private Camera _camera;
+    [SerializeField] private InputBinder _binder;
+    
     [SerializeField] private AudioClip _btnClick;
     [SerializeField] private GameObject _heavenNormal;
     [SerializeField] private GameObject _heavenPressed;
@@ -16,6 +20,12 @@ public class ManSentenceController : MonoBehaviour
     [SerializeField] private Hand _hand;
     public event Action DecisionMade;
     private bool _deciding;
+    
+    private void Start()
+    {
+        _binder.BindKey(KeyCode.Mouse0, InputEvent.Pressed, HandleClick);
+    }
+    
     public async UniTaskVoid MakeDecision(bool toHeaven)
     {
         if (!_deciding)
@@ -36,6 +46,7 @@ public class ManSentenceController : MonoBehaviour
                     GameCore.Instance.ScenarioData.RightAnswers[index] == toHeaven
             });
         _soundPlayer.PlayFX(_btnClick);
+        _hand.SetMoving(false);
         SetButtonPressed(toHeaven);
 
         await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
@@ -65,6 +76,28 @@ public class ManSentenceController : MonoBehaviour
     {
         _deciding = true;
         _hand.gameObject.SetActive(true);
+        _hand.SetMoving(true);
+        _hand.ResetPosition();
         ResetButtons();
+    }
+
+    private void HandleClick()
+    {
+        if (!_deciding)
+        {
+            return;
+        }
+        RaycastHit hit;
+        if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit))
+        {
+            if (hit.collider.gameObject == _heavenNormal.gameObject)
+            {
+                MakeDecision(true).Forget();
+            }
+            else if (hit.collider.gameObject == _hellNormal.gameObject)
+            {
+                MakeDecision(false).Forget();
+            }
+        }
     }
 }

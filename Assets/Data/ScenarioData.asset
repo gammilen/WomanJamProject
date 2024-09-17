@@ -15,9 +15,13 @@ MonoBehaviour:
   MenIdInOrder: 04000000050000000600000007000000
   GoddessesIdInOrder: 010000000200000003000000
   OpenningDialogue: {fileID: 11400000, guid: b9346966f22d4bc4f980c0a84e1413fc, type: 2}
-  CommentDialogues: []
+  CommentDialogues:
+  - {fileID: 11400000, guid: 80095c9934d69314e9702c8947ea7426, type: 2}
+  - {fileID: 11400000, guid: 1cb7d571b52782847859b8e3f7a95fe7, type: 2}
+  - {fileID: 11400000, guid: 4307a940c775b974088a76670337f0fe, type: 2}
+  - {fileID: 11400000, guid: 87ce4f4bcbaa4cf45b0171e852497070, type: 2}
   RightAnswers: 00010001
-  HeavenManagerId: 8
-  HellManagerId: 9
+  HeavenManagerId: 9
+  HellManagerId: 10
   FinalSuccessDialogue: {fileID: 11400000, guid: 83e3168cd9ea7b54e998e34d44c7d670, type: 2}
   FinalFailureDialogue: {fileID: 11400000, guid: d36454827110e314d8bb15706070d5a3, type: 2}

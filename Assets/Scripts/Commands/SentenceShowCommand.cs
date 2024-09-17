@@ -27,16 +27,7 @@ public class SentenceShowCommand : MonoBehaviour
         {
             return;
         }
-        var indexOf = CommandHelper.GetIndexOfCurrentMan();
-        if (indexOf == -1)
-        {
-            Debug.LogError("No current man");
-            GameCore.Instance.Data.CurrentManId = GameCore.Instance.ScenarioData.MenIdInOrder[0];
-        }
-        else if (indexOf + 1 < GameCore.Instance.ScenarioData.MenIdInOrder.Count)
-        {
-            GameCore.Instance.Data.CurrentManId = GameCore.Instance.ScenarioData.MenIdInOrder[indexOf + 1];
-        }
+        
         _cmd.Complete();
         _cmd = null;
     }

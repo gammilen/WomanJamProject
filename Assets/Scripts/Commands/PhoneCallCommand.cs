@@ -36,11 +36,6 @@ public class PhoneCallCommand : MonoBehaviour
     {
         _screenViewer.SwitchView(_screenViewer.goddessesView);
         _phoneController.StartRinging();
-        // TODO:
-        // start phone effect
-        // start to wait for phone pick up
-        
-        _cmd.Complete();
     }
 
     private void Complete()

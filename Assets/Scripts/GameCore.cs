@@ -34,7 +34,7 @@ public class GameCore : MonoBehaviour
     private async UniTaskVoid StartSequence()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(1), DelayType.UnscaledDeltaTime);
-        Instance.Data.CurrentManId = ScenarioData.MenIdInOrder[0];
+        Instance.Data.SetCurrentManId(ScenarioData.MenIdInOrder[0]);
         Scenario.Play().Forget();
     }
         

@@ -21,6 +21,17 @@ public class ManPresentController : MonoBehaviour
     
     [SerializeField] private InputBinder _binder;
     
+    public float ManViewAlpha
+    {
+        get => _manView.color.a;
+        set
+        {
+            var c = _manView.color;
+            c.a = value;
+            _manView.color = c;
+        }
+    }
+    
     public event Action MoveNextEvent;
     private bool _presentingMan;
     private bool _isOutsideOfScreen;
@@ -51,7 +62,8 @@ public class ManPresentController : MonoBehaviour
         {
             _heavenEffect.Play();
             _soundPlayer.PlayMusic(_heavenSound);
-            Go.to(_manView, 3, new GoTweenConfig().colorProp("color", new Color(1, 1, 1, 0), false));
+            
+            Go.to(this, 3, new GoTweenConfig().floatProp("ManViewAlpha", 0, false).setDelay(0.5f));
         }
         else
         {
@@ -75,22 +87,21 @@ public class ManPresentController : MonoBehaviour
         await UniTask.DelayFrame(5);
         _presentingMan = true;
         //_manView.transform.position = new Vector3();  
-        _manView.color = new Color(1,1,1,1);
         _manBio.SetActive(true);
         _manBioText.text = data.Bio;
         _manView.sprite = data.View;
-        _manView.color = new Color(1,1,1,1);
+        ManViewAlpha = 1;
 
         if (_isOutsideOfScreen)
         {
-            _manView.transform.position = _initPosition + new Vector3(15, 0, 1);
+            _manView.transform.position = _initPosition + new Vector3(15, -0.56f, 1);
             _isOutsideOfScreen = false;
-            Go.to(_manView.transform, 1, new GoTweenConfig().position(new Vector3(0,0,1)));
+            Go.to(_manView.transform, 1, new GoTweenConfig().position(new Vector3(0.3f,-0.56f,1)));
             await UniTask.Delay(TimeSpan.FromSeconds(1));
         }
     }
 
-    public void MoveNext()
+    private void MoveNext()
     {
         _manBio.SetActive(false);
         MoveNextEvent?.Invoke();

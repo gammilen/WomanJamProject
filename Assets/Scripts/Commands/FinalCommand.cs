@@ -1,13 +1,18 @@
-﻿using UnityEngine;
+﻿using RyanNielson.InputBinder;
+using UnityEngine;
 
 public class FinalCommand : MonoBehaviour
 {
     [SerializeField] private ScreenViewer _screenViewer;
+    [SerializeField] private InputBinder _binder;
+    
     private GameCommand _cmd;
 
     private void Start()
     {
         GameCore.Instance.Scenario.Finish.StartEvent += Finish;
+        _binder.BindKey(KeyCode.Mouse0, InputEvent.Pressed, Complete);
+
         // TODO: final effector . Completed += Complete
     }
 
@@ -17,10 +22,6 @@ public class FinalCommand : MonoBehaviour
         _cmd.StartEvent -= Finish;
         
         _screenViewer.SwitchView(_screenViewer.finalView);
-        
-        // TODO:
-        // start photo effect
-
     }
 
     private void Complete()
@@ -32,6 +33,5 @@ public class FinalCommand : MonoBehaviour
         _cmd.Complete();
         _cmd = null;
     }
-    
 
 }

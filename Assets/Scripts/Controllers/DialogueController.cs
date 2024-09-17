@@ -38,8 +38,9 @@ public class DialogueController : MonoBehaviour
 
             _currentDialogue = dialogue;
             _currentLineIndex = 0;
-            UpdateDialogueLine();
             _normalDialogueBox.gameObject.SetActive(true);
+
+            UpdateDialogueLine();
         }
 
 
