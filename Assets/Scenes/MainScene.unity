@@ -5630,7 +5630,7 @@ GameObject:
   - component: {fileID: 1384264714}
   - component: {fileID: 1384264715}
   m_Layer: 0
-  m_Name: Menu
+  m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5661,11 +5661,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8934477283594743780, guid: 697aa24f13453fc4f9a2155090a7feb8, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8d1f00df468e51b41a430720c0b54c5c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6453,22 +6453,13 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.068456374
     - serializedVersion: 3
-      time: 0.8046295
-      value: 0.45460793
-      inSlope: 0.9814265
-      outSlope: 0.9814265
+      time: 1.002686
+      value: 0.49816716
+      inSlope: 1.3083619
+      outSlope: 1.3083619
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.356076
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 8.186813
-      outSlope: 8.186813
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.10845032
+      inWeight: 0.09772552
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -6745,7 +6736,7 @@ MonoBehaviour:
   _writer: {fileID: 1798695750}
   _normalDialogueBox: {fileID: 1790866871}
   _charactersData: {fileID: 11400000, guid: a36873d42ab2bee4b9277939d2263161, type: 2}
-  _timePerChar: 0.05
+  _timePerChar: 0.015
   _soundPlayer: {fileID: 1834009916}
 --- !u!114 &1798695748
 MonoBehaviour:
@@ -7001,7 +6992,7 @@ MonoBehaviour:
   _mixer: {fileID: 24100000, guid: 697aa24f13453fc4f9a2155090a7feb8, type: 2}
   _fxSource: {fileID: 1127602684}
   _musicSource: {fileID: 1634521230}
-  _menuSource: {fileID: 1634521230}
+  _bgSource: {fileID: 1384264715}
 --- !u!1 &1842725325
 GameObject:
   m_ObjectHideFlags: 0

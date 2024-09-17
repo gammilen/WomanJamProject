@@ -6,19 +6,19 @@ public class SoundPlayer : MonoBehaviour
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private AudioSource _fxSource;
     [SerializeField] private AudioSource _musicSource;
-    [SerializeField] private AudioSource _menuSource;
+    [SerializeField] private AudioSource _bgSource;
 
     public float MusicVolume
     {
         get
         {
             float  value;
-            _mixer.GetFloat("MusicVolume", out value);
+            _mixer.GetFloat("BgVolume", out value);
             return (value + 40) / 40;
         }
         set
         {
-            _mixer.SetFloat("MusicVolume", -40 + 40 * value);
+            _mixer.SetFloat("BgVolume", -40 + 40 * value);
         }
     }
 
@@ -48,10 +48,10 @@ public class SoundPlayer : MonoBehaviour
         _musicSource.clip = null;
     }
     
-    public void PlayMenu(AudioClip audio)
+    public void PlayBg(AudioClip audio)
     {
-        _menuSource.clip = audio;
-        _menuSource.Play();
+        _bgSource.clip = audio;
+        _bgSource.Play();
     }
 
 }

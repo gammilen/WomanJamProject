@@ -33,8 +33,8 @@ public class OpeningEffector : MonoBehaviour
     {
         await UniTask.DelayFrame(1);
 
-        _soundPlayer.MusicVolume = 1;
-        _soundPlayer.PlayMusic(_music);
+        // _soundPlayer.MusicVolume = 1;
+        _soundPlayer.PlayBg(_music);
 
         Go.to(this, FadeOutDuration, new GoTweenConfig().floatProp("FadeScreenAlpha", 0, false).setEaseCurve(_fadeOutCurve));
         //Go.to(_fadeScreen, FadeOutDuration, new GoTweenConfig().colorProp("color", new Color(0, 0, 0, 0), true));
@@ -57,9 +57,9 @@ public class OpeningEffector : MonoBehaviour
             await UniTask.DelayFrame(1);
         }*/
 
-        _music.UnloadAudioData();
-        _soundPlayer.StopMusic();
-        _soundPlayer.MusicVolume = 1;
+        // _music.UnloadAudioData();
+        // _soundPlayer.StopMusic();
+        //_soundPlayer.MusicVolume = 1;
         
         
         callback();

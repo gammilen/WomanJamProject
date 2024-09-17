@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ManagerDialogueCommand : MonoBehaviour
@@ -8,10 +7,8 @@ public class ManagerDialogueCommand : MonoBehaviour
     [SerializeField] private DialogueController _dialogueController;
     [SerializeField] private PhoneController _phone;
     
-    private static System.Random rng = new System.Random();  
-
     private GameCommand _cmd;
-    private List<int> _linesPool = new List<int>();
+    private int _currIndex;
     private bool _inDialogue;
 
     private void Start()
@@ -50,13 +47,8 @@ public class ManagerDialogueCommand : MonoBehaviour
 
     private string GetLine()
     {
-        if (_linesPool.Count == 0)
-        {
-            _linesPool = GameCore.Instance.ManagersLines.Lines.Select((x, y) => y).ToList();
-            Shuffle(_linesPool);
-        }
-        var line = GameCore.Instance.ManagersLines.Lines[_linesPool[0]];
-        _linesPool.RemoveAt(0);
+        var line = GameCore.Instance.ManagersLines.Lines[_currIndex];
+        _currIndex++;
         return line;
     }
 
@@ -70,16 +62,5 @@ public class ManagerDialogueCommand : MonoBehaviour
         _phone.PutDown();
         _inDialogue = false;
         _cmd.Complete();
-    }
-
-
-    public static void Shuffle<T>(IList<T> list)  
-    {  
-        int n = list.Count;  
-        while (n > 1) {  
-            n--;  
-            int k = rng.Next(n + 1);  
-            (list[k], list[n]) = (list[n], list[k]);
-        }  
     }
 }
