@@ -10,6 +10,7 @@ using UnityEditor;
         public class DialogueLine
         {
             public int CharacterId;
+            [TextArea]
             public string Text;
         }
 
